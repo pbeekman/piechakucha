@@ -1,5 +1,6 @@
-# piechakucha
-Simple timer app for pecha kucha / ignite presentations build with Ionic
+# piechakucha v0.01
+Simple timer app for pecha kucha / ignite presentations build with Ionic.
+At this moment, it's just a working prototype 
 
 #How to run
 
