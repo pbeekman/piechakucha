@@ -22,58 +22,44 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
   </head>
-  <body ng-app="piecha-kucha">
+  <body ng-app="piecha-kucha" ng-controller="indexCtrl">
 
     <ion-pane>
       <ion-header-bar class="bar-positive">
-        <h1 class="new_title">Piecha Kucha Timer</h1>
+        <h1 class="title">Piecha Kucha</h1>
+        <button class="button icon ion-android-settings" ng-click="showSettings();"></button>
       </ion-header-bar>
-      <ion-content ng-controller="indexCtrl" padding="true">
-
-        <div class="list">
-          <!-- Time per slide -->
-          <div class="item item-divider">
-            Tijd per slide: <strong>{{slideTime}}</strong> seconden
-          </div>
-          <div class="item range range-positive">
-            <i class="icon ion-minus-circled"></i>
-            <input type="range" name="volume" min="1" max="20" ng-model="slideTime" />
-            <i class="icon ion-plus-circled"></i>
-          </div>
-
-          <!-- First warning -->
-          <div class="item item-divider">
-            Eerste alarm na: <strong>{{firstWarning}}</strong> seconden
-          </div>
-          <div class="item range range-positive">
-            <i class="icon ion-minus-circled"></i>
-            <input type="range" name="volume" min="1" max="20" ng-model="firstWarning" />
-            <i class="icon ion-plus-circled"></i>
-          </div>
-
-          <!-- Presets -->
-          <label class="item item-input item-select">
-            <div class="input-label">
-              <i>Gebruik preset</i>
-            </div>
-            <select ng-change="setPreset()" ng-model="presetValue">
-              <option value="pechakucha" selected>Pecha Kucha</option>
-              <option value="ignite">Ignite</option>
-
-            </select>
-          </label>
-        </div>
+      <ion-content padding="true" has-bouncing="false">
+        <!--<div class="modalHeader">-->
+          <!--<a class="settingsBtn" ng-click="getSettings();"><i class="icon ion-gear-b" ></i></a>-->
+        <!--</div>-->
+        <ul class="settingsList">
+          <li class="smallTitle"><span>Current settings:</span></li>
+          <li><i class="icon ion-android-time"></i> {{data.slideTime}}s</li>
+          <li><i class="icon ion-android-alarm-clock"></i> {{data.firstWarning}}s</li>
+          <li><i class="icon ion-radio-waves standardIconOff"  ng-class="{'standardIconOn': data.vibration}"></i></li>
+          <li><i class="icon ion-flash standardIconOff"  ng-class="{'standardIconOn': data.flash}"></i></li>
+          <!--<li><i class="icon " ng-class="{!data.flash : iconOff}"></i></li>-->
+        </ul>
 
         <div class="secondsHolder">
           <span class="seconds">{{counter}}</span>
         </div>
 
-        <button ng-hide="timeStarted" class="button button-block button-positive" ng-click="startTimer()">
+        <button ng-hide="timeStarted" class="button button-block button-light" ng-click="startTimer()">
           Start timer
         </button>
-        <button ng-show="timeStarted" class="button button-block button-positive" ng-click="stopTimer()">
+        <button ng-show="timeStarted" class="button button-block button-light" ng-click="stopTimer()">
           Stop timer
         </button>
+
+
+
+
+
+
+
+
 
 
 

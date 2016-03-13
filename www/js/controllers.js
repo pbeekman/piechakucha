@@ -1,23 +1,30 @@
 angular.module('piecha-kucha.controllers', ['ngCordova'])
 
-.controller('indexCtrl', function($scope, $timeout, $cordovaVibration) {
-  $scope.slideTime = 20;
-  $scope.firstWarning = 15;
+.controller('settingsCtrl', function(){
+
+
+
+})
+
+
+.controller('indexCtrl', function($scope, $timeout, $cordovaVibration, $cordovaFlashlight, $ionicModal) {
+  $scope.data = {};
+
+  //Clock functions/settings
+  $scope.data.slideTime = 20;
+  $scope.data.firstWarning = 15;
+  $scope.data.vibration = true;
+  $scope.data.flash = false;
+
   $scope.counter = 0;
   $scope.timeStarted = false;
 
   var mytimeout;
 
-  $scope.setPreset = function() {
-
-    if($scope.presetValue == 'pechakucha') {
-      $scope.slideTime = 20;
-      $scope.firstWarning = 15;
-    }
-    else if($scope.presetValue == 'ignite') {
-      $scope.slideTime = 15;
-      $scope.firstWarning = 10;
-    }
+  $scope.startTimer = function() {
+    $scope.counter = 0;
+    $scope.timeStarted = true;
+    mytimeout = $timeout($scope.clockFunction,1000);
   }
 
   $scope.stopTimer = function(){
@@ -26,27 +33,88 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
   }
 
   $scope.clockFunction = function(){
-    if($scope.counter == $scope.slideTime) {
+    if($scope.counter == $scope.data.slideTime) {
       $scope.counter = 0;
     }
 
     $scope.counter++;
 
-    if($scope.counter == $scope.firstWarning){
-      //console.log('buzz!');
-      $cordovaVibration.vibrate([300, 300, 400]);
+    if($scope.counter == $scope.data.firstWarning){
+      if($scope.data.vibration) {
+        //$cordovaVibration.vibrate([300, 300, 400]);
+      }
+
+      if($scope.data.flash) {
+        $cordovaFlashlight.switchOn();
+        $timeout($scope.turnOffFlash,500);
+      }
     }
-    else if($scope.counter == ($scope.slideTime -1)) {
-      //console.log('buzzzzzzzzz');
-      $cordovaVibration.vibrate(1000);
+    else if($scope.counter == ($scope.data.slideTime)) {
+      if($scope.data.vibration) {
+        //$cordovaVibration.vibrate(1000);
+      }
+
+      if($scope.data.flash) {
+        $cordovaFlashlight.switchOn();
+        $timeout($scope.turnOffFlash,1000);
+      }
     }
     mytimeout = $timeout($scope.clockFunction,1000);
   }
 
 
-  $scope.startTimer = function() {
-    $scope.counter = 0;
-    $scope.timeStarted = true;
-    mytimeout = $timeout($scope.clockFunction,1000);
+  $scope.turnOffFlash = function() {
+    $cordovaFlashlight.switchOff();
   }
+
+  //Settings page
+
+  $scope.data.presetValue = 'pechakucha';
+
+  $scope.setPreset = function() {
+
+    if($scope.data.presetValue == 'pechakucha') {
+      $scope.data.slideTime = 20;
+      $scope.data.firstWarning = 15;
+    }
+    else if($scope.data.presetValue == 'ignite') {
+      $scope.data.slideTime = 15;
+      $scope.data.firstWarning = 10;
+    }
+  };
+
+
+  //$scope.checkTimeSettings = function(){
+  //
+  //  if($scope.data.slideTime < $scope.data.firstWarning) {
+  //    alert('The time per slide can not be shorter than the warning time!');
+  //    $scope.setPreset('pechakucha');
+  //  }
+  //  else {
+  //    return true;
+  //  }
+  //}
+
+
+  //Modal settings
+  $ionicModal.fromTemplateUrl('templates/settingsModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.showSettings = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeSettings = function() {
+    $scope.modal.hide();
+  };
+
+
+
+
+
+
 });
