@@ -1,11 +1,5 @@
 angular.module('piecha-kucha.controllers', ['ngCordova'])
 
-.controller('settingsCtrl', function(){
-
-
-
-})
-
 
 .controller('indexCtrl', function($scope, $timeout, $cordovaVibration, $cordovaFlashlight, $ionicModal) {
   $scope.data = {};
@@ -15,6 +9,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
   $scope.data.firstWarning = 15;
   $scope.data.vibration = true;
   $scope.data.flash = false;
+  $scope.data.countdown = false;
 
   $scope.counter = 0;
   $scope.timeStarted = false;
@@ -41,7 +36,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 
     if($scope.counter == $scope.data.firstWarning){
       if($scope.data.vibration) {
-        //$cordovaVibration.vibrate([300, 300, 400]);
+        $cordovaVibration.vibrate([300, 300, 400]);
       }
 
       if($scope.data.flash) {
@@ -51,7 +46,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
     }
     else if($scope.counter == ($scope.data.slideTime)) {
       if($scope.data.vibration) {
-        //$cordovaVibration.vibrate(1000);
+        $cordovaVibration.vibrate(1000);
       }
 
       if($scope.data.flash) {
