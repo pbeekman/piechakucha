@@ -1,15 +1,28 @@
 angular.module('piecha-kucha.controllers', ['ngCordova'])
 
+.service('sharedSettings', function () {
+	var settings = {
+		'slideTime' : 20,
+		'firstWarning' : 15,
+		'vibration' : true,
+		'flash' : false
+	};
 
-.controller('indexCtrl', function($scope, $timeout, $cordovaVibration, $cordovaFlashlight, $ionicModal) {
+	return {
+		getSettings: function () {
+			return settings;
+		},
+		setSetting: function(newSettings) {
+			settings = newSettings;
+		}
+	};
+})
+
+.controller('indexCtrl', function($scope, sharedSettings, $timeout, $cordovaVibration, $cordovaFlashlight, $ionicModal) {
 	$scope.data = {};
+	$scope.settings = sharedSettings.getSettings();
 
 	//Clock functions/settings
-	$scope.data.slideTime = 20;
-	$scope.data.firstWarning = 15;
-	$scope.data.vibration = true;
-	$scope.data.flash = false;
-	$scope.data.countdown = false;
 	$scope.counter = 0;
 	$scope.timeStarted = false;
 
@@ -27,28 +40,28 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
   	}
 
   	$scope.clockFunction = function(){
-    	if($scope.counter == $scope.data.slideTime) {
+    	if($scope.counter == $scope.settings.slideTime) {
       		$scope.counter = 0;
     	}
 
     	$scope.counter++;
 
-    	if($scope.counter == $scope.data.firstWarning){
-      		if($scope.data.vibration) {
+    	if($scope.counter == $scope.settings.firstWarning){
+      		if($scope.settings.vibration) {
         		$cordovaVibration.vibrate([300, 300, 400]);
       		}
 
-      		if($scope.data.flash) {
+      		if($scope.settings.flash) {
         		$cordovaFlashlight.switchOn();
         		$timeout($scope.turnOffFlash,500);
       		}
     	}
-    	else if($scope.counter == ($scope.data.slideTime)) {
-			if($scope.data.vibration) {
+    	else if($scope.counter == ($scope.settings.slideTime)) {
+			if($scope.settings.vibration) {
 				$cordovaVibration.vibrate(1000);
       		}
 
-      		if($scope.data.flash) {
+      		if($scope.settings.flash) {
         		$cordovaFlashlight.switchOn();
         		$timeout($scope.turnOffFlash,1000);
       		}
@@ -62,19 +75,6 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
     	$cordovaFlashlight.switchOff();
   	}
 
-  	//Settings page
-  	$scope.data.presetValue = 'pechakucha';
-
-	$scope.setPreset = function() {
-		if($scope.data.presetValue == 'pechakucha') {
-      		$scope.data.slideTime = 20;
-      		$scope.data.firstWarning = 15;
-    	}
-    	else if($scope.data.presetValue == 'ignite') {
-      		$scope.data.slideTime = 15;
-      		$scope.data.firstWarning = 10;
-    	}
-  	};
 
   	//Modal settings
   	$ionicModal.fromTemplateUrl('templates/settingsModal.html', {
@@ -91,4 +91,25 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
   	$scope.closeSettings = function() {
     	$scope.modal.hide();
   	};
+})
+
+.controller('settingsCtrl', function($scope, sharedSettings) {
+	$scope.settings = sharedSettings.getSettings();
+	$scope.data.presetValue = 'pechakucha';
+
+	$scope.changeSetting = function(setting) {
+		sharedSettings.setSetting($scope.settings);
+	}
+
+	$scope.setPreset = function() {
+		if($scope.data.presetValue == 'pechakucha') {
+			$scope.settings.slideTime = 20;
+			$scope.settings.firstWarning = 15;
+		}
+		else if($scope.data.presetValue == 'ignite') {
+			$scope.settings.slideTime = 15;
+			$scope.settings.firstWarning = 10;
+		}
+		sharedSettings.setSetting($scope.settings);
+	};
 });

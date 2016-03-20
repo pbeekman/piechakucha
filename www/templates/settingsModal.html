@@ -4,7 +4,7 @@
 		<button class="button icon ion-close" ng-click="closeSettings();"></button>
 	</ion-header-bar>
 
-  	<ion-content class="contentPart" has-bouncing="false" scroll="true">
+  	<ion-content class="contentPart" has-bouncing="false" scroll="true" ng-controller="settingsCtrl">
 		<div class="list">
         	<!-- Presets -->
         	<label class="item item-input item-select">
@@ -20,18 +20,18 @@
 
         	<!-- Time per slide -->
         	<div class="item item-divider">
-				Time per slide: <strong>{{data.slideTime}}</strong> seconds
+				Time per slide: <strong>{{settings.slideTime}}</strong> seconds
         	</div>
         	<div class="item range">
-          		<input type="range" name="volume" min="1" max="20" ng-model="data.slideTime" />
+          		<input type="range" name="volume" min="1" max="20" ng-model="settings.slideTime" ng-change="changeSetting('slideTime')" />
         	</div>
 
         	<!-- First warning -->
         	<div class="item item-divider">
-          		First warning after: <strong>{{data.firstWarning}}</strong> seconds
+          		First warning after: <strong>{{settings.firstWarning}}</strong> seconds
         	</div>
         	<div class="item range">
-          		<input type="range" name="volume" min="1" max="20" ng-model="data.firstWarning" />
+          		<input type="range" name="volume" min="1" max="20" ng-model="settings.firstWarning" />
         	</div>
 
         	<!-- Alert methods -->
@@ -42,7 +42,7 @@
         	<div class="item item-toggle">
 				Vibration
           		<label class="toggle toggle-positive">
-            		<input type="checkbox" ng-model="data.vibration">
+            		<input type="checkbox" ng-model="settings.vibration">
             		<div class="track">
               			<div class="handle"></div>
             		</div>
@@ -52,7 +52,7 @@
         	<div class="item item-toggle">
           		Flash
           		<label class="toggle toggle-positive">
-            		<input type="checkbox" ng-model="data.flash">
+            		<input type="checkbox" ng-model="settings.flash">
             		<div class="track">
               			<div class="handle"></div>
             		</div>
@@ -66,7 +66,7 @@
         	<div class="item">
           		App version
           		<span class="item-note">
-            		v 0.2
+            		v 0.3
           		</span>
         	</div>
         	<div class="item">
