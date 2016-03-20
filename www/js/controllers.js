@@ -7,7 +7,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 		'fistWarningOn' : true,
 		'vibration' : true,
 		'flash' : false,
-		'countdown' : true
+		'countdown' : false
 	};
 
 	return {

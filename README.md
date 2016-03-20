@@ -1,4 +1,4 @@
-# piechakucha v0.3
+# piechakucha v0.4
 Simple timer app for pecha kucha / ignite presentations build with Ionic.
 You can set an silent alarm (vibrate or flashlight) as a warning  when you're in the the last seconds of your slide. So it's a signal to wrap your talk and be prepared for the next one :)
 
