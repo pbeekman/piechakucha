@@ -3,8 +3,7 @@
   	<head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    	<title></title>
-
+    	<title>Piechakucha</title>
 
     	<!-- compiled css output -->
     	<link href="css/ionic.app.css" rel="stylesheet">
@@ -33,7 +32,7 @@
 				<ul class="settingsList">
 					<li class="smallTitle"><span>Current settings:</span></li>
 					<li><i class="icon ion-android-time"></i> {{settings.slideTime}}s</li>
-					<li><i class="icon ion-android-alarm-clock"></i> {{settings.firstWarning}}s</li>
+					<li><i class="icon ion-android-alarm-clock standardIconOff" ng-class="{'standardIconOn': settings.fistWarningOn}"></i><span ng-show="settings.fistWarningOn"> {{settings.firstWarning}}s</span></li>
 					<li><i class="icon ion-radio-waves standardIconOff"  ng-class="{'standardIconOn': settings.vibration}"></i></li>
 					<li><i class="icon ion-flash standardIconOff"  ng-class="{'standardIconOn': settings.flash}"></i></li>
 				</ul>

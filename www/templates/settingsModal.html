@@ -19,11 +19,14 @@
         	</label>
 
         	<!-- Time per slide -->
-        	<div class="item item-divider">
+			<div class="item item-divider errorBar" ng-class="{'errorBar--visible': data.error}">
+				<i class="icon ion-alert-circled"></i> Time per slide < first warning time!
+			</div>
+			<div class="item item-divider">
 				Time per slide: <strong>{{settings.slideTime}}</strong> seconds
         	</div>
         	<div class="item range">
-          		<input type="range" name="volume" min="1" max="20" ng-model="settings.slideTime" ng-change="changeSetting('slideTime')" />
+          		<input type="range" name="volume" min="1" max="20" ng-model="settings.slideTime" ng-change="changeSetting()" />
         	</div>
 
         	<!-- First warning -->
@@ -31,7 +34,7 @@
           		First warning after: <strong>{{settings.firstWarning}}</strong> seconds
         	</div>
         	<div class="item range">
-          		<input type="range" name="volume" min="1" max="20" ng-model="settings.firstWarning" />
+          		<input type="range" name="volume" min="1" max="20" ng-model="settings.firstWarning" ng-change="changeSetting()" />
         	</div>
 
         	<!-- Alert methods -->
@@ -42,7 +45,7 @@
         	<div class="item item-toggle">
 				Vibration
           		<label class="toggle toggle-positive">
-            		<input type="checkbox" ng-model="settings.vibration">
+            		<input type="checkbox" ng-model="settings.vibration" ng-change="changeSetting()">
             		<div class="track">
               			<div class="handle"></div>
             		</div>
@@ -52,7 +55,7 @@
         	<div class="item item-toggle">
           		Flash
           		<label class="toggle toggle-positive">
-            		<input type="checkbox" ng-model="settings.flash">
+            		<input type="checkbox" ng-model="settings.flash" ng-change="changeSetting()">
             		<div class="track">
               			<div class="handle"></div>
             		</div>

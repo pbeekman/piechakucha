@@ -4,6 +4,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 	var settings = {
 		'slideTime' : 20,
 		'firstWarning' : 15,
+		'fistWarningOn' : true,
 		'vibration' : true,
 		'flash' : false
 	};
@@ -46,9 +47,9 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 
     	$scope.counter++;
 
-    	if($scope.counter == $scope.settings.firstWarning){
+    	if($scope.counter == $scope.settings.firstWarning && $scope.settings.fistWarningOn){
       		if($scope.settings.vibration) {
-        		$cordovaVibration.vibrate([300, 300, 400]);
+				$cordovaVibration.vibrate([300, 300, 400]);
       		}
 
       		if($scope.settings.flash) {
@@ -75,7 +76,6 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
     	$cordovaFlashlight.switchOff();
   	}
 
-
   	//Modal settings
   	$ionicModal.fromTemplateUrl('templates/settingsModal.html', {
     	scope: $scope,
@@ -96,8 +96,18 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 .controller('settingsCtrl', function($scope, sharedSettings) {
 	$scope.settings = sharedSettings.getSettings();
 	$scope.data.presetValue = 'pechakucha';
+	$scope.data.error = false;
 
-	$scope.changeSetting = function(setting) {
+	$scope.changeSetting = function() {
+		if(parseInt($scope.settings.slideTime) < parseInt($scope.settings.firstWarning)){
+			$scope.data.error = true;
+			$scope.settings.fistWarningOn = false;
+		}
+		else {
+			$scope.data.error = false;
+			$scope.settings.fistWarningOn = true;
+		}
+
 		sharedSettings.setSetting($scope.settings);
 	}
 
