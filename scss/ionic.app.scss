@@ -30,38 +30,90 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.pane {
-  background-color: $positive;
-}
+
+/*** Header ***/
 
 .bar-positive .button.icon:before{
-  font-size: 28px;
-}
-
-/** Header **/
-.modalHeader{
-  width: 100%;
-  height: 60px;
-}
-
-
-.settingsBtn {
-  float: right;
-
-  .icon {
-    color: #fff;
-    font-size: 30px;
-  }
+	font-size: 28px;
 }
 
 h1.title {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 28px !important;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 28px !important;
 	font-weight: 900!important;
-  color: #fff;
 }
 
-/*** Settings ***/
+/*** App main page ***/
+.pane {
+	background-color: $positive;
+}
+
+.secondsHolder {
+	display: table;
+	float: left;
+	height: 300px;
+	text-align: center;
+	width: 100%;
+
+	.seconds {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 128px;
+		font-weight: 900;
+		color: #fff;
+		display: table-cell;
+		vertical-align: middle;
+	}
+}
+
+.button.button-light,.button.button-light:hover {
+	color: $positive;
+	font-weight: bold;
+}
+
+.currentSettings {
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.scroll-content .scroll {
+	height: 95%;
+}
+
+.settingsList {
+	background: #fff;
+	float: left;
+	margin: 0;
+	padding: 15px;
+	width: 100%;
+
+
+	li {
+		color: $positive;
+		float: left;
+		font-size: 20px;
+		margin-right: 15px;
+
+		&.smallTitle {
+			font-size: 14px;
+		}
+
+		i {
+			font-size: 20px;
+			font-weight: bold;
+
+			&.standardIconOff {
+				color: rgba($positive, 0.3);
+			}
+
+			&.standardIconOn {
+				color: $positive;
+			}
+		}
+	}
+}
+
+/*** Settings modal ***/
 
 input[type="range"]::-webkit-slider-thumb:before{background: $positive;}
 
@@ -74,83 +126,3 @@ input[type="range"]::-webkit-slider-thumb:before{background: $positive;}
 		display: block;
 	}
 }
-
-.secondsHolder {
-  width: 100%;
-  text-align: center;
-  float: left;
-  height: 300px;
-  display: table;
-
-
-  .seconds {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 128px;
-	  font-weight: 900;
-    color: #fff;
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
-
-.button.button-light,.button.button-light:hover {
-  color: $positive;
-  font-weight: bold;
-
-}
-
-.currentSettings {
-  color: #fff;
-	font-family: 'Open Sans', sans-serif;
-}
-
-.scroll-content .scroll {
-  height: 95%;
-}
-
-.settingsList {
-  width: 92%;
-  margin-left: 8%;
-  margin-top: 8px;
-
-  li {
-    color: #fff;
-
-    float: left;
-    font-size: 18px;
-    margin-right: 15px;
-    display: table;
-
-    &.smallTitle {
-      font-size: 12px;
-      display: table;
-      height: 25px;
-
-      span {
-        display: table-cell;
-        vertical-align: middle;
-      }
-    }
-
-    i {
-      font-weight: bold;
-      font-size: 20px;
-
-      &.standardIconOff {
-        color: rgba(255,255,255, 0.5);
-      }
-
-      &.standardIconOn {
-        color: #fff;
-      }
-    }
-  }
-}
-
-
-
-
-
-
-
-

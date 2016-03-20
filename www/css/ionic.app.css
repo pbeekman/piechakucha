@@ -9735,46 +9735,26 @@ a.button {
 body {
   font-family: 'Open Sans', sans-serif; }
 
-.pane {
-  background-color: #1fc5f9; }
-
+/*** Header ***/
 .bar-positive .button.icon:before {
   font-size: 28px; }
 
-/** Header **/
-.modalHeader {
-  width: 100%;
-  height: 60px; }
-
-.settingsBtn {
-  float: right; }
-  .settingsBtn .icon {
-    color: #fff;
-    font-size: 30px; }
-
 h1.title {
+  color: #fff;
   font-family: 'Open Sans', sans-serif;
   font-size: 28px !important;
-  font-weight: 900 !important;
-  color: #fff; }
+  font-weight: 900 !important; }
 
-/*** Settings ***/
-input[type="range"]::-webkit-slider-thumb:before {
-  background: #1fc5f9; }
-
-.errorBar {
-  background: #ef473a;
-  color: #fff;
-  display: none; }
-  .errorBar--visible {
-    display: block; }
+/*** App main page ***/
+.pane {
+  background-color: #1fc5f9; }
 
 .secondsHolder {
-  width: 100%;
-  text-align: center;
+  display: table;
   float: left;
   height: 300px;
-  display: table; }
+  text-align: center;
+  width: 100%; }
   .secondsHolder .seconds {
     font-family: 'Open Sans', sans-serif;
     font-size: 128px;
@@ -9795,26 +9775,33 @@ input[type="range"]::-webkit-slider-thumb:before {
   height: 95%; }
 
 .settingsList {
-  width: 92%;
-  margin-left: 8%;
-  margin-top: 8px; }
+  background: #fff;
+  float: left;
+  margin: 0;
+  padding: 15px;
+  width: 100%; }
   .settingsList li {
-    color: #fff;
+    color: #1fc5f9;
     float: left;
-    font-size: 18px;
-    margin-right: 15px;
-    display: table; }
+    font-size: 20px;
+    margin-right: 15px; }
     .settingsList li.smallTitle {
-      font-size: 12px;
-      display: table;
-      height: 25px; }
-      .settingsList li.smallTitle span {
-        display: table-cell;
-        vertical-align: middle; }
+      font-size: 14px; }
     .settingsList li i {
-      font-weight: bold;
-      font-size: 20px; }
+      font-size: 20px;
+      font-weight: bold; }
       .settingsList li i.standardIconOff {
-        color: rgba(255, 255, 255, 0.5); }
+        color: rgba(31, 197, 249, 0.3); }
       .settingsList li i.standardIconOn {
-        color: #fff; }
+        color: #1fc5f9; }
+
+/*** Settings modal ***/
+input[type="range"]::-webkit-slider-thumb:before {
+  background: #1fc5f9; }
+
+.errorBar {
+  background: #ef473a;
+  color: #fff;
+  display: none; }
+  .errorBar--visible {
+    display: block; }

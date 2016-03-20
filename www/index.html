@@ -28,25 +28,33 @@
 				<h1 class="title">Piecha Kucha</h1>
 				<button class="button icon ion-android-settings" ng-click="showSettings();"></button>
 			</ion-header-bar>
-			<ion-content padding="true" has-bouncing="false">
+			<ion-content has-bouncing="false">
 				<ul class="settingsList">
-					<li class="smallTitle"><span>Current settings:</span></li>
+					<li class="smallTitle"><span>Settings:</span></li>
 					<li><i class="icon ion-android-time"></i> {{settings.slideTime}}s</li>
 					<li><i class="icon ion-android-alarm-clock standardIconOff" ng-class="{'standardIconOn': settings.fistWarningOn}"></i><span ng-show="settings.fistWarningOn"> {{settings.firstWarning}}s</span></li>
-					<li><i class="icon ion-radio-waves standardIconOff"  ng-class="{'standardIconOn': settings.vibration}"></i></li>
-					<li><i class="icon ion-flash standardIconOff"  ng-class="{'standardIconOn': settings.flash}"></i></li>
+
+					<li><i class="icon ion-load-a standardIconOff" ng-class="{'standardIconOn': settings.countdown}"></i></li>
+					<li><i class="icon ion-radio-waves standardIconOff" ng-class="{'standardIconOn': settings.vibration}"></i></li>
+					<li><i class="icon ion-flash standardIconOff" ng-class="{'standardIconOn': settings.flash}"></i></li>
 				</ul>
 
 				<div class="secondsHolder">
 					<span class="seconds">{{counter}}</span>
 				</div>
-
-				<button ng-hide="timeStarted" class="button button-block button-light" ng-click="startTimer()">
-					Start timer
-				</button>
-				<button ng-show="timeStarted" class="button button-block button-light" ng-click="stopTimer()">
-					Stop timer
-				</button>
+				<div ng-hide="countdownActive" class="padding">
+					<button ng-hide="timeStarted" class="button button-block button-light" ng-click="startTimer()">
+						Start timer
+					</button>
+					<button ng-show="timeStarted" class="button button-block button-light" ng-click="stopTimer()">
+						Stop timer
+					</button>
+				</div>
+				<div class="padding" ng-show="countdownActive">
+					<button class="button button-block button-light">
+						Get ready!
+					</button>
+				</div>
 			</ion-content>
 		</ion-pane>
   	</body>

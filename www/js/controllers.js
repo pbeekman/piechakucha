@@ -6,7 +6,8 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 		'firstWarning' : 15,
 		'fistWarningOn' : true,
 		'vibration' : true,
-		'flash' : false
+		'flash' : false,
+		'countdown' : true
 	};
 
 	return {
@@ -26,22 +27,48 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 	//Clock functions/settings
 	$scope.counter = 0;
 	$scope.timeStarted = false;
+	$scope.countdownActive = false;
 
-  	var mytimeout;
+  	var clock;
 
   	$scope.startTimer = function() {
-		$scope.counter = 0;
 		$scope.timeStarted = true;
-		mytimeout = $timeout($scope.clockFunction,1000);
+
+		if($scope.settings.countdown){
+			$scope.countdownActive = true;
+			$scope.counter = 5;
+			countdown = $timeout($scope.countdownFunction,1000);
+		}
+		else {
+			clock = $timeout($scope.clockFunction,1000);
+		}
   	}
 
   	$scope.stopTimer = function(){
-    	$timeout.cancel(mytimeout);
-    	$scope.timeStarted = false;
+    	$timeout.cancel(clock);
+    	$scope.counter = 0;
+		$scope.timeStarted = false;
   	}
 
+	$scope.startCountdown = function(){
+		$scope.counter = 5;
+		countdown = $timeout($scope.countdownFunction,1000);
+	}
+
+	$scope.countdownFunction = function(){
+		$scope.counter--;
+		if($scope.counter == 0) {
+			$cordovaVibration.vibrate(1000);
+			clock = $timeout($scope.clockFunction,1000);
+		}
+		else {
+			countdown = $timeout($scope.countdownFunction,1000);
+		}
+	}
+
   	$scope.clockFunction = function(){
-    	if($scope.counter == $scope.settings.slideTime) {
+		$scope.countdownActive = false;
+		if($scope.counter == $scope.settings.slideTime) {
       		$scope.counter = 0;
     	}
 
@@ -54,7 +81,7 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 
       		if($scope.settings.flash) {
         		$cordovaFlashlight.switchOn();
-        		$timeout($scope.turnOffFlash,500);
+				$cordovaFlashlight.switchOff();
       		}
     	}
     	else if($scope.counter == ($scope.settings.slideTime)) {
@@ -64,17 +91,13 @@ angular.module('piecha-kucha.controllers', ['ngCordova'])
 
       		if($scope.settings.flash) {
         		$cordovaFlashlight.switchOn();
-        		$timeout($scope.turnOffFlash,1000);
+				$cordovaFlashlight.switchOff();
       		}
     	}
 
-		mytimeout = $timeout($scope.clockFunction,1000);
+		clock = $timeout($scope.clockFunction,1000);
   	}
 
-
-  	$scope.turnOffFlash = function() {
-    	$cordovaFlashlight.switchOff();
-  	}
 
   	//Modal settings
   	$ionicModal.fromTemplateUrl('templates/settingsModal.html', {

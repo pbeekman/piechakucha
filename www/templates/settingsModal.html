@@ -37,6 +37,16 @@
           		<input type="range" name="volume" min="1" max="20" ng-model="settings.firstWarning" ng-change="changeSetting()" />
         	</div>
 
+			<div class="item item-toggle">
+				5 Seconds countdown
+				<label class="toggle toggle-positive">
+					<input type="checkbox" ng-model="settings.countdown" ng-change="changeSetting()">
+					<div class="track">
+						<div class="handle"></div>
+					</div>
+				</label>
+			</div>
+
         	<!-- Alert methods -->
         	<div class="item item-divider">
           		Alert methods
@@ -78,6 +88,12 @@
             		@PieterBeekman
           		</span>
 			</div>
+			<div class="item">
+				<button class="button button-full button-positive" ng-click="closeSettings();">
+					Save & close
+				</button>
+			</div>
       	</div>
+
     </ion-content>
 </ion-modal-view>
