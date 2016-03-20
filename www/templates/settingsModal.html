@@ -1,82 +1,80 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-positive">
-    <h1 class="title">Settings</h1>
-    <button class="button icon ion-close" ng-click="closeSettings();"></button>
-  </ion-header-bar>
+	<ion-header-bar class="bar-positive">
+		<h1 class="title">Settings</h1>
+		<button class="button icon ion-close" ng-click="closeSettings();"></button>
+	</ion-header-bar>
 
-  <ion-content class="contentPart" has-bouncing="false" scroll="true">
+  	<ion-content class="contentPart" has-bouncing="false" scroll="true">
+		<div class="list">
+        	<!-- Presets -->
+        	<label class="item item-input item-select">
+				<div class="input-label">
+            		<i>Use presets</i>
+          		</div>
 
+				<select ng-model="data.presetValue" ng-change="setPreset()">
+            		<option value="pechakucha" selected="selected">Pecha Kucha</option>
+            		<option value="ignite">Ignite</option>
+          		</select>
+        	</label>
 
-      <div class="list">
-        <!-- Presets -->
-        <label class="item item-input item-select">
-          <div class="input-label">
-            <i>Use presets</i>
-          </div>
-          <select ng-model="data.presetValue" ng-change="setPreset()">
-            <option value="pechakucha" selected="selected">Pecha Kucha</option>
-            <option value="ignite">Ignite</option>
-          </select>
-        </label>
+        	<!-- Time per slide -->
+        	<div class="item item-divider">
+				Time per slide: <strong>{{data.slideTime}}</strong> seconds
+        	</div>
+        	<div class="item range">
+          		<input type="range" name="volume" min="1" max="20" ng-model="data.slideTime" />
+        	</div>
 
-        <!-- Time per slide -->
-        <div class="item item-divider">
-          Time per slide: <strong>{{data.slideTime}}</strong> seconds
-        </div>
-        <div class="item range">
-          <input type="range" name="volume" min="1" max="20" ng-model="data.slideTime" />
-        </div>
+        	<!-- First warning -->
+        	<div class="item item-divider">
+          		First warning after: <strong>{{data.firstWarning}}</strong> seconds
+        	</div>
+        	<div class="item range">
+          		<input type="range" name="volume" min="1" max="20" ng-model="data.firstWarning" />
+        	</div>
 
-        <!-- First warning -->
-        <div class="item item-divider">
-          First warning after: <strong>{{data.firstWarning}}</strong> seconds
-        </div>
-        <div class="item range">
-          <input type="range" name="volume" min="1" max="20" ng-model="data.firstWarning" />
-        </div>
+        	<!-- Alert methods -->
+        	<div class="item item-divider">
+          		Alert methods
+			</div>
 
-        <!-- Alert methods -->
-        <div class="item item-divider">
-          Alert methods
-        </div>
+        	<div class="item item-toggle">
+				Vibration
+          		<label class="toggle toggle-positive">
+            		<input type="checkbox" ng-model="data.vibration">
+            		<div class="track">
+              			<div class="handle"></div>
+            		</div>
+          		</label>
+        	</div>
 
-        <div class="item item-toggle">
-          Vibration
-          <label class="toggle toggle-positive">
-            <input type="checkbox" ng-model="data.vibration">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
-        </div>
+        	<div class="item item-toggle">
+          		Flash
+          		<label class="toggle toggle-positive">
+            		<input type="checkbox" ng-model="data.flash">
+            		<div class="track">
+              			<div class="handle"></div>
+            		</div>
+          		</label>
+        	</div>
 
-        <div class="item item-toggle">
-          Flash
-          <label class="toggle toggle-positive">
-            <input type="checkbox" ng-model="data.flash">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
-        </div>
+        	<div class="item item-divider">
+          		App information
+        	</div>
 
-        <div class="item item-divider">
-          App information
-        </div>
-
-        <div class="item">
-          App version
-          <span class="item-note">
-            v 0.2
-          </span>
-        </div>
-        <div class="item">
-          App author
-          <span class="item-note">
-            @PieterBeekman
-          </span>
-        </div>
-      </div>
-
+        	<div class="item">
+          		App version
+          		<span class="item-note">
+            		v 0.2
+          		</span>
+        	</div>
+        	<div class="item">
+          		App author
+          		<span class="item-note">
+            		@PieterBeekman
+          		</span>
+			</div>
+      	</div>
     </ion-content>
 </ion-modal-view>

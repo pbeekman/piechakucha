@@ -1,76 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+  	<head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    	<title></title>
 
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+    	<!-- compiled css output -->
+    	<link href="css/ionic.app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    	<!-- ionic/angularjs js -->
+    	<script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- ngcordova Lib -->
-    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    	<!-- ngcordova Lib -->
+    	<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    	<!-- cordova script (this will be a 404 during development) -->
+    	<script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
-  </head>
-  <body ng-app="piecha-kucha" ng-controller="indexCtrl">
+    	<!-- your app's js -->
+    	<script src="js/app.js"></script>
+    	<script src="js/controllers.js"></script>
+  	</head>
 
-    <ion-pane>
-      <ion-header-bar class="bar-positive">
-        <h1 class="title">Piecha Kucha</h1>
-        <button class="button icon ion-android-settings" ng-click="showSettings();"></button>
-      </ion-header-bar>
-      <ion-content padding="true" has-bouncing="false">
-        <!--<div class="modalHeader">-->
-          <!--<a class="settingsBtn" ng-click="getSettings();"><i class="icon ion-gear-b" ></i></a>-->
-        <!--</div>-->
-        <ul class="settingsList">
-			<li class="smallTitle"><span>Current settings:</span></li>
-          	<li><i class="icon ion-android-time"></i> {{data.slideTime}}s</li>
-          	<li><i class="icon ion-android-alarm-clock"></i> {{data.firstWarning}}s</li>
-          	<li><i class="icon ion-radio-waves standardIconOff"  ng-class="{'standardIconOn': data.vibration}"></i></li>
-          	<li><i class="icon ion-flash standardIconOff"  ng-class="{'standardIconOn': data.flash}"></i></li>
-          <!--<li><i class="icon " ng-class="{!data.flash : iconOff}"></i></li>-->
-        </ul>
+	<body ng-app="piecha-kucha" ng-controller="indexCtrl">
+		<ion-pane>
+			<ion-header-bar class="bar-positive">
+				<h1 class="title">Piecha Kucha</h1>
+				<button class="button icon ion-android-settings" ng-click="showSettings();"></button>
+			</ion-header-bar>
+			<ion-content padding="true" has-bouncing="false">
+				<ul class="settingsList">
+					<li class="smallTitle"><span>Current settings:</span></li>
+					<li><i class="icon ion-android-time"></i> {{data.slideTime}}s</li>
+					<li><i class="icon ion-android-alarm-clock"></i> {{data.firstWarning}}s</li>
+					<li><i class="icon ion-radio-waves standardIconOff"  ng-class="{'standardIconOn': data.vibration}"></i></li>
+					<li><i class="icon ion-flash standardIconOff"  ng-class="{'standardIconOn': data.flash}"></i></li>
+				</ul>
 
-        <div class="secondsHolder">
-          <span class="seconds">{{counter}}</span>
-        </div>
+				<div class="secondsHolder">
+					<span class="seconds">{{counter}}</span>
+				</div>
 
-        <button ng-hide="timeStarted" class="button button-block button-light" ng-click="startTimer()">
-          Start timer
-        </button>
-        <button ng-show="timeStarted" class="button button-block button-light" ng-click="stopTimer()">
-          Stop timer
-        </button>
-		  <div>
-			  gdgfg
-			  gffgd
-		  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </ion-content>
-    </ion-pane>
-  </body>
+				<button ng-hide="timeStarted" class="button button-block button-light" ng-click="startTimer()">
+					Start timer
+				</button>
+				<button ng-show="timeStarted" class="button button-block button-light" ng-click="stopTimer()">
+					Stop timer
+				</button>
+			</ion-content>
+		</ion-pane>
+  	</body>
 </html>
